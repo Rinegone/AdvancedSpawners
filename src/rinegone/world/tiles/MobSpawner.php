@@ -14,8 +14,6 @@ class MobSpawner extends Spawnable {
     const TILE_BLOCK = BlockLegacyIds::MOB_SPAWNER;
 
     const TAG_ENTITY_ID = "EntityId";
-    const TAG_ENTITY_IDENTIFIER = "EntityIdentifier";
-    const TAG_DISPLAY_ENTITY_SCALE = "DisplayEntityScale";
     const TAG_SPAWN_COUNT = "SpawnCount";
     const TAG_SPAWN_RANGE = "SpawnRange";
     const TAG_MIN_SPAWN_DELAY = "MinSpawnDelay";
@@ -24,7 +22,6 @@ class MobSpawner extends Spawnable {
     private bool $validEntity = true;
 
     private int $entityId = -1;
-    private int $baseSpawnCount = 4;
     private int $spawnCount = 4;
     private int $spawnRange = 4;
     private int $spawnDelay = 40;
@@ -49,16 +46,8 @@ class MobSpawner extends Spawnable {
         return $this->spawnCount;
     }
 
-    public function setSpawnCount(int $spawnCount): void{
-        $this->spawnCount = $spawnCount;
-    }
-
     public function getSpawnRange(): int{
         return $this->spawnRange;
-    }
-
-    public function setSpawnRange(int $spawnRange): void{
-        $this->spawnRange = $spawnRange;
     }
 
     public function getSpawnDelay(): int{
@@ -77,16 +66,8 @@ class MobSpawner extends Spawnable {
         return $this->minSpawnDelay;
     }
 
-    public function setMinSpawnDelay(int $minSpawnDelay): void{
-        $this->minSpawnDelay = $minSpawnDelay;
-    }
-
     public function getMaxSpawnDelay(): int{
         return $this->maxSpawnDelay;
-    }
-
-    public function setMaxSpawnDelay(int $maxSpawnDelay): void{
-        $this->maxSpawnDelay = $maxSpawnDelay;
     }
 
     public function getTick(): int{

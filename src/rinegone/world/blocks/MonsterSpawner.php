@@ -19,7 +19,6 @@ use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\player\Player;
 use pocketmine\world\BlockTransaction;
-use rinegone\entities\EntityManager;
 use rinegone\utils\FileManager;
 use rinegone\world\tiles\MobSpawner;
 
