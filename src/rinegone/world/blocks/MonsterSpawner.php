@@ -8,6 +8,7 @@ use pocketmine\block\BlockIdentifier;
 use pocketmine\block\BlockLegacyIds;
 use pocketmine\block\BlockToolType;
 use pocketmine\block\MonsterSpawner as PMSpawner;
+use pocketmine\data\bedrock\LegacyEntityIdToStringIdMap;
 use pocketmine\entity\Living;
 use pocketmine\entity\Location;
 use pocketmine\item\Item;
@@ -32,8 +33,7 @@ class MonsterSpawner extends PMSpawner
         parent::__construct(new BlockIdentifier(BlockLegacyIds::MOB_SPAWNER, 0, null, MobSpawner::class), "Monster Spawner", new BlockBreakInfo(5.0, BlockToolType::PICKAXE, ToolTier::WOOD()->getHarvestLevel()));
     }
 
-    public function isAffectedBySilkTouch(): bool
-    {
+    public function isAffectedBySilkTouch(): bool {
         return true;
     }
 
@@ -41,10 +41,16 @@ class MonsterSpawner extends PMSpawner
     {
         $tile = $this->getPosition()->getWorld()->getTile($this->getPosition());
         if ($tile instanceof MobSpawner) {
+            $name = LegacyEntityIdToStringIdMap::getInstance()->legacyToString($this->entityId);
+            $displayName = [];
+            foreach(explode("_", $name) as $value){
+                $displayName[] = ucfirst(strtolower($value));
+            }
+            $displayName = implode(" ", $displayName);
             $nbt = new CompoundTag();
             $nbt->setInt("EntityId", (int)$tile->getEntityId());
             $spawner = ItemFactory::getInstance()->get(ItemIds::MOB_SPAWNER, 0, 1, $nbt);
-            $spawner->setCustomName("§r§e" . EntityManager::getEntityNameFromID($tile->getEntityId()) . "§r§f Spawner");
+            $spawner->setCustomName("§r§e" . ucfirst(strtolower(str_replace("Minecraft:", "", $displayName))) . "§r§f Spawner");
             return [$spawner];
         }
         return [];
@@ -68,7 +74,7 @@ class MonsterSpawner extends PMSpawner
             $tile = new MobSpawner($this->getPosition()->getWorld(), $this->getPosition());
         }
         $tile->setEntityId($this->entityId);
-        $tile->writeSaveData($tag = new CompoundTag());
+        $tile->writeSaveData(new CompoundTag());
         $this->onScheduledUpdate();
         $this->getPosition()->getWorld()->addTile($tile);
     }
