@@ -41,7 +41,7 @@ class MonsterSpawner extends PMSpawner
     {
         $tile = $this->getPosition()->getWorld()->getTile($this->getPosition());
         if ($tile instanceof MobSpawner) {
-            $name = LegacyEntityIdToStringIdMap::getInstance()->legacyToString($this->entityId);
+            $name = LegacyEntityIdToStringIdMap::getInstance()->legacyToString($tile->getEntityId());
             $displayName = [];
             foreach(explode("_", $name) as $value){
                 $displayName[] = ucfirst(strtolower($value));
