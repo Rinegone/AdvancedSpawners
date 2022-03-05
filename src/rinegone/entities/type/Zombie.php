@@ -39,8 +39,8 @@ class Zombie extends Living {
                 }
             }
         }
-        if(\mt_rand(0, 199) < 5){
-            switch(\mt_rand(0, 2)){
+        if(mt_rand(0, 199) < 5){
+            switch(mt_rand(0, 2)){
                 case 0:
                     return [
                         ItemFactory::getInstance()->get(265, 0, $lootingL),
@@ -54,7 +54,7 @@ class Zombie extends Living {
                 case 2:
                     return [
                         ItemFactory::getInstance()->get(392, 0, $lootingL),
-                        ItemFactory::getInstance()->get(367, 0, mt_rand(0, 2), $lootingL),
+                        ItemFactory::getInstance()->get(367, 0, mt_rand(0, 2) * $lootingL),
                     ];
             }
         }
