@@ -33,6 +33,7 @@ class SpawnerCommand extends Command {
             return;
         }
         unset($args[0]);
+        unset($args[2]);
         $id = EntityLegacyIds::class . "::" . strtoupper(implode("_", $this->ignoreArgument($args, 0)));
         if(!defined($id)){
             $sender->sendMessage("§cEntity not found");
@@ -42,7 +43,7 @@ class SpawnerCommand extends Command {
         $nbt = new CompoundTag();
         $nbt->setInt("EntityId", (int) $id);
         $spawner = ItemFactory::getInstance()->get(ItemIds::MOB_SPAWNER, 0, $amount, $nbt);
-        $spawner->setCustomName("§r§b". ucwords(implode(" ", $args)) . "§r§f Spawner");
+        $spawner->setCustomName("§r§e". ucwords(implode(" ", $args)) . "§r§f Spawner");
         $inventory = $target->getInventory();
         if($inventory->canAddItem($spawner)) $inventory->addItem($spawner);
         else $target->dropItem($spawner);

@@ -19,6 +19,7 @@ use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\player\Player;
 use pocketmine\world\BlockTransaction;
+use rinegone\Loader;
 use rinegone\utils\FileManager;
 use rinegone\world\tiles\MobSpawner;
 
@@ -60,6 +61,7 @@ class MonsterSpawner extends PMSpawner
         if($item->getNamedTag()->getTag("EntityId") !== null) {
             $this->entityId = $item->getNamedTag()->getInt("EntityId", -1);
             if($this->entityId > 10) {
+                $this->getPosition()->getWorld()->setBlock($this->getPosition(), $this, true);
                 $this->generateSpawnerTile();
             }
         }
@@ -79,7 +81,7 @@ class MonsterSpawner extends PMSpawner
     }
 
     public function onScheduledUpdate(): void{
-        $tile = $this->position->getWorld()->getTile($this->position);
+        $tile = $this->getPosition()->getWorld()->getTile($this->getPosition());
         if($tile->isClosed() || !$tile instanceof MobSpawner){
             return;
         }
@@ -95,13 +97,9 @@ class MonsterSpawner extends PMSpawner
                     $z = ((mt_rand(-10, 10) / 10) * $tile->getSpawnRange()) + 0.5;
                     $pos = $tile->getPosition();
                     $pos = new Location($pos->x + $x, $pos->y + mt_rand(1, 3), $pos->z + $z, $pos->getWorld(), 0, 0);
-                    $entities = [];
-                    FileManager::callDirectory("entities/type", function (string $entity) use ($tile, $entities) {
-                        /* @var Living $entity*/
-                        $entities[$tile->getEntityId()] = $entity;
-                    });
-
-                    $e = new $entities[$tile->getEntityId()]($pos);
+                    $entities = Loader::getInstance()->getEntityManager()->getEntities();
+                    if (!isset($entities[$tile->getEntityId()])) return;
+                    $e = new $entities[$tile->getEntityId()][2]($pos);
                     $e->spawnToAll();
                     $i++;
                 }
