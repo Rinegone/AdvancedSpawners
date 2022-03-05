@@ -68,4 +68,8 @@ class Zombie extends Living {
     {
         return EntityIds::ZOMBIE;
     }
+
+    public function getXpDropAmount(): int{
+        return 5;
+    }
 }

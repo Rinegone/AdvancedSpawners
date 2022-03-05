@@ -47,6 +47,10 @@ class Creeper extends Living {
         ];
     }
 
+    public function getXpDropAmount(): int{
+        return 5;
+    }
+
     public static function getNetworkTypeId() : string{ return EntityIds::CREEPER; }
 
 }

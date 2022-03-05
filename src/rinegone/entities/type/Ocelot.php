@@ -53,4 +53,8 @@ class Ocelot extends Living {
     {
         return EntityIds::OCELOT;
     }
+
+    public function getXpDropAmount(): int{
+        return mt_rand(1, 3);
+    }
 }

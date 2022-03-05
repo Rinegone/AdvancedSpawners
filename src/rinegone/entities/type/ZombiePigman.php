@@ -51,4 +51,8 @@ class ZombiePigman extends Living {
         return EntityIds::ZOMBIE_PIGMAN;
     }
 
+    public function getXpDropAmount(): int{
+        return 5;
+    }
+
 }

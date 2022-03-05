@@ -45,4 +45,8 @@ class Blaze extends Living {
     protected function getInitialSizeInfo(): EntitySizeInfo{
         return new EntitySizeInfo(1.8, 0.6);
     }
+
+    public function getXpDropAmount(): int{
+        return 10;
+    }
 }

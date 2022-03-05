@@ -58,4 +58,8 @@ class Sheep extends Living {
     {
         return EntityIds::SHEEP;
     }
+
+    public function getXpDropAmount(): int{
+        return mt_rand(1, 3);
+    }
 }

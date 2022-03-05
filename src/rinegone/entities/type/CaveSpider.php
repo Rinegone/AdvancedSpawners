@@ -57,4 +57,9 @@ class CaveSpider extends Living
     {
         return EntityIds::CAVE_SPIDER;
     }
+
+    public function getXpDropAmount(): int{
+        return 5;
+    }
+
 }

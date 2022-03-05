@@ -54,4 +54,8 @@ class Pig extends Living {
     {
         return EntityIds::PIG;
     }
+
+    public function getXpDropAmount(): int{
+        return mt_rand(1, 3);
+    }
 }

@@ -57,4 +57,8 @@ class Chicken extends Living {
     {
         return EntityIds::CHICKEN;
     }
+
+    public function getXpDropAmount(): int{
+        return mt_rand(1, 3);
+    }
 }

@@ -57,4 +57,8 @@ class Cow extends Living {
         return EntityIds::COW;
     }
 
+    public function getXpDropAmount(): int{
+        return mt_rand(1, 3);
+    }
+
 }

@@ -62,4 +62,8 @@ class Guardian extends Living {
     {
         return EntityIds::GUARDIAN;
     }
+
+    public function getXpDropAmount(): int{
+        return 10;
+    }
 }

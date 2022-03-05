@@ -66,4 +66,8 @@ class Witch extends Living {
     {
         return EntityIds::WITCH;
     }
+
+    public function getXpDropAmount(): int{
+        return 5;
+    }
 }

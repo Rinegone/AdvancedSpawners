@@ -48,4 +48,8 @@ class Wolf extends Living {
     {
         return EntityIds::WOLF;
     }
+
+    public function getXpDropAmount(): int{
+        return mt_rand(1, 3);
+    }
 }

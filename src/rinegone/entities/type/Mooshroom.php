@@ -59,4 +59,8 @@ class Mooshroom extends Living {
     {
         return EntityIds::MOOSHROOM;
     }
+
+    public function getXpDropAmount(): int{
+        return mt_rand(1, 3);
+    }
 }

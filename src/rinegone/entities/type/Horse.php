@@ -48,4 +48,8 @@ class Horse extends Living {
     {
         return EntityIds::HORSE;
     }
+
+    public function getXpDropAmount(): int{
+        return mt_rand(1, 3);
+    }
 }

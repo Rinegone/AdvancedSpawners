@@ -49,4 +49,8 @@ class Skeleton extends Living {
     {
         return EntityIds::SKELETON;
     }
+
+    public function getXpDropAmount(): int{
+        return 5;
+    }
 }

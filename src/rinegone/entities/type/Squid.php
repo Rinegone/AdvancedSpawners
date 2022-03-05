@@ -51,4 +51,8 @@ class Squid extends Living {
     {
         return "Squid";
     }
+
+    public function getXpDropAmount(): int{
+        return mt_rand(1, 3);
+    }
 }

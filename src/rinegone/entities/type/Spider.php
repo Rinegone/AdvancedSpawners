@@ -48,4 +48,8 @@ class Spider extends Living {
     {
         return EntityIds::SPIDER;
     }
+
+    public function getXpDropAmount(): int{
+        return 5;
+    }
 }

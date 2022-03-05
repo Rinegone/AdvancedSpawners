@@ -52,4 +52,8 @@ class Enderman extends Living {
     {
         return EntityIds::ENDERMAN;
     }
+
+    public function getXpDropAmount(): int{
+        return 5;
+    }
 }
