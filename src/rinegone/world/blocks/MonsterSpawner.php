@@ -57,15 +57,14 @@ class MonsterSpawner extends PMSpawner
     }
 
     public function place(BlockTransaction $tx, Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, ?Player $player = null): bool {
-        $parent = parent::place($tx, $item, $blockReplace, $blockClicked, $face, $clickVector, $player);
+        parent::place($tx, $item, $blockReplace, $blockClicked, $face, $clickVector, $player);
         if($item->getNamedTag()->getTag("EntityId") !== null) {
             $this->entityId = $item->getNamedTag()->getInt("EntityId", -1);
             if($this->entityId > 10) {
-                $this->getPosition()->getWorld()->setBlock($this->getPosition(), $this, true);
                 $this->generateSpawnerTile();
             }
         }
-        return $parent;
+        return true;
     }
 
     private function generateSpawnerTile(): void {
@@ -82,7 +81,7 @@ class MonsterSpawner extends PMSpawner
 
     public function onScheduledUpdate(): void{
         $tile = $this->getPosition()->getWorld()->getTile($this->getPosition());
-        if($tile->isClosed() || !$tile instanceof MobSpawner){
+        if(!$tile instanceof MobSpawner){
             return;
         }
         if($tile->getTick() > 0) $tile->decreaseTick();
